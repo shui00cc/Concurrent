@@ -24,7 +24,7 @@ func asStream(done <-chan struct{}, values ...int) <-chan interface{} {
 	return s
 }
 
-// mapChan 对输入的流式管道进行映射操作，使用提供的映射函数 fn。
+// mapChan 对输入的流式管道进行映射操作，使用自定义的映射函数 fn。
 // 返回一个输出流式管道，其中包含映射后的数据。
 func mapChan(in <-chan interface{}, fn func(interface{}) interface{}) <-chan interface{} {
 	out := make(chan interface{}) // 输出 channel
@@ -41,7 +41,7 @@ func mapChan(in <-chan interface{}, fn func(interface{}) interface{}) <-chan int
 	return out
 }
 
-// reduce 对输入的流式管道进行缩减操作，使用提供的缩减函数 fn。
+// reduce 对输入的流式管道进行缩减操作，使用自定义的缩减函数 fn。
 // 返回最终的缩减结果。
 func reduce(in <-chan interface{}, fn func(r, v interface{}) interface{}) interface{} {
 	if in == nil { // 异常检查
